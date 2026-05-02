@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Лаванда — магазин ароматов Прованса</title>
+  <style>
+    :root {
+      --lavender: #967bb6;
+      --lavender-light: #b39ddb;
+      --lavender-soft: #e6dff2;
+      --violet-deep: #5e35b1;
+      --cream: #faf7fb;
+      --ink: #2d2438;
+      --gold: #c9a96b;
+      --shadow: 0 6px 24px rgba(94, 53, 177, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--violet-deep);
+      letter-spacing: 0.3px;
+    }
+
+    a { color: var(--violet-deep); }
+
+    /* ---------- Header ---------- */
+    .site-header {
+      background: linear-gradient(135deg, var(--lavender) 0%, var(--lavender-light) 100%);
+      color: #fff;
+      padding: 28px 32px 0;
+      box-shadow: var(--shadow);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo::before {
+      content: "❀";
+      font-size: 1.6rem;
+      color: #fff;
+    }
+    .logo-sub {
+      font-family: -apple-system, sans-serif;
+      font-size: 0.85rem;
+      font-weight: 400;
+      opacity: 0.85;
+      margin-left: 6px;
+    }
+
+    /* ---------- Tabs nav ---------- */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      background: transparent;
+      color: #fff;
+      border: none;
+      padding: 14px 22px;
+      font-size: 1rem;
+      font-family: inherit;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: background 0.2s, border-color 0.2s;
+      border-radius: 6px 6px 0 0;
+    }
+    .tab-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+    .tab-btn.active {
+      background: var(--cream);
+      color: var(--violet-deep);
+      border-bottom-color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* ---------- Main ---------- */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 32px 60px;
+    }
+
+    .tab-panel { display: none; animation: fade 0.3s ease; }
+    .tab-panel.active { display: block; }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---------- Home / hero ---------- */
+    .hero {
+      background: linear-gradient(135deg, var(--lavender-soft) 0%, #fff 100%);
+      border-radius: 14px;
+      padding: 48px 40px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .hero h1 {
+      margin: 0 0 16px;
+      font-size: 2.4rem;
+    }
+    .hero p {
+      max-width: 640px;
+      margin: 0 auto 24px;
+      font-size: 1.1rem;
+    }
+    .cta {
+      display: inline-block;
+      background: var(--violet-deep);
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(94, 53, 177, 0.3);
+      transition: transform 0.15s, box-shadow 0.15s;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(94, 53, 177, 0.4);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 36px;
+    }
+    .feature {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    .feature h3 { margin: 0 0 8px; font-size: 1.1rem; }
+    .feature p { margin: 0; color: #555; font-size: 0.95rem; }
+
+    /* ---------- Catalog ---------- */
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin: 0 0 8px;
+    }
+    .section-lead {
+      text-align: center;
+      color: #5a4a6e;
+      max-width: 640px;
+      margin: 0 auto 32px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: translateY(-4px); }
+    .card-img {
+      height: 160px;
+      background: linear-gradient(135deg, var(--lavender-light), var(--lavender));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: #fff;
+    }
+    .card-body { padding: 18px 20px 20px; flex: 1; display: flex; flex-direction: column; }
+    .card h3 { margin: 0 0 6px; font-size: 1.15rem; }
+    .card-desc { color: #666; font-size: 0.93rem; flex: 1; margin: 0 0 14px; }
+    .card-price {
+      font-weight: 700;
+      color: var(--violet-deep);
+      font-size: 1.1rem;
+    }
+
+    /* ---------- About ---------- */
+    .about-wrap {
+      background: #fff;
+      border-radius: 14px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+    .about-img {
+      height: 280px;
+      background: linear-gradient(135deg, var(--lavender) 0%, var(--violet-deep) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      color: #fff;
+    }
+    .about-text p { margin: 0 0 14px; }
+
+    /* ---------- Contacts ---------- */
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .contact-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+    .contact-card h3 { margin-top: 0; }
+    .contact-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .contact-line .icon { font-size: 1.3rem; }
+
+    .widget-wrap {
+      margin-top: 28px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .widget-wrap h3 { margin-top: 0; }
+    #dive-widget { min-height: 80px; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      text-align: center;
+      padding: 28px 16px;
+      background: var(--lavender-soft);
+      color: #5a4a6e;
+      font-size: 0.9rem;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 720px) {
+      .site-header { padding: 22px 18px 0; }
+      main { padding: 28px 18px 48px; }
+      .tabs { flex-direction: column; gap: 2px; }
+      .tab-btn { text-align: left; border-radius: 6px; border-bottom: none; border-left: 3px solid transparent; }
+      .tab-btn.active { border-left-color: var(--gold); border-bottom: none; }
+      .features, .grid, .about-wrap, .contacts-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero { padding: 32px 22px; }
+      .hero h1 { font-size: 1.8rem; }
+      .about-wrap { padding: 24px; }
+      .about-img { height: 200px; font-size: 3.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        Лаванда
+        <span class="logo-sub">— ароматы Прованса с любовью</span>
+      </div>
+      <nav class="tabs" role="tablist" aria-label="Разделы сайта">
+        <button class="tab-btn active" data-tab="home" role="tab">Главная</button>
+        <button class="tab-btn" data-tab="catalog" role="tab">Каталог</button>
+        <button class="tab-btn" data-tab="about" role="tab">О нас</button>
+        <button class="tab-btn" data-tab="contacts" role="tab">Контакты</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Главная -->
+    <section class="tab-panel active" id="home" role="tabpanel">
+      <div class="hero">
+        <h1>Магазин лавандовых изделий</h1>
+        <p>
+          Натуральная лаванда с собственной фермы в Крыму.
+          Эфирные масла холодного отжима, ароматные саше, мыло ручной работы и сухие букеты —
+          всё, чтобы наполнить дом теплом и спокойствием Прованса.
+        </p>
+        <button class="cta" data-go="catalog">Перейти в каталог</button>
+      </div>
+
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">🌿</div>
+          <h3>100% натурально</h3>
+          <p>Без синтетических отдушек и красителей. Только то, что выросло на наших полях.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🚚</div>
+          <h3>Доставка по России</h3>
+          <p>Отправляем заказы СДЭК и Почтой России в течение 1–2 рабочих дней.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">💜</div>
+          <h3>Ручная работа</h3>
+          <p>Каждое мыло, саше и букет создаются вручную небольшими партиями.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Каталог -->
+    <section class="tab-panel" id="catalog" role="tabpanel">
+      <h2 class="section-title">Каталог</h2>
+      <p class="section-lead">Шесть бестселлеров, которые любят наши покупатели.</p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-img">🌾</div>
+          <div class="card-body">
+            <h3>Сухой букет лаванды</h3>
+            <p class="card-desc">Срезанная в полнолуние, бережно высушенная — украсит любой интерьер.</p>
+            <div class="card-price">690 ₽</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-img">💧</div>
+          <div class="card-body">
+            <h3>Эфирное масло, 10 мл</h3>
+            <p class="card-desc">Чистое лавандовое масло холодного отжима. Для аромаламп и косметики.</p>
+            <div class="card-price">890 ₽</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-img">🧼</div>
+          <div class="card-body">
+            <h3>Мыло ручной работы</h3>
+            <p class="card-desc">На козьем молоке с цветками лаванды. Мягко очищает и успокаивает кожу.</p>
+            <div class="card-price">450 ₽</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-img">🎀</div>
+          <div class="card-body">
+            <h3>Саше для шкафа</h3>
+            <p class="card-desc">Льняной мешочек с сушёными цветами. Защищает от моли и дарит аромат.</p>
+            <div class="card-price">320 ₽</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-img">🍵</div>
+          <div class="card-body">
+            <h3>Травяной чай с лавандой</h3>
+            <p class="card-desc">Купаж с ромашкой и мелиссой. Помогает расслабиться вечером.</p>
+            <div class="card-price">520 ₽</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-img">🕯️</div>
+          <div class="card-body">
+            <h3>Свеча соевая, 200 г</h3>
+            <p class="card-desc">Натуральный соевый воск, время горения — около 40 часов.</p>
+            <div class="card-price">980 ₽</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- О нас -->
+    <section class="tab-panel" id="about" role="tabpanel">
+      <h2 class="section-title">О нас</h2>
+      <p class="section-lead">Маленькая ферма с большой любовью к лаванде.</p>
+
+      <div class="about-wrap">
+        <div class="about-img">🌸</div>
+        <div class="about-text">
+          <p>
+            Наша семья выращивает лаванду в Крыму с 2014 года.
+            Всё началось с небольшого участка в полгектара — сегодня это ферма площадью 12 гектар,
+            где растут пять сортов: Vera, Munstead, Hidcote, Grosso и Provence.
+          </p>
+          <p>
+            Мы собираем цветы вручную, в самые ранние утренние часы, когда содержание эфирных
+            масел максимально. Сушка проходит без нагрева, в проветриваемых помещениях,
+            а перегонка — на собственной медной установке.
+          </p>
+          <p>
+            Каждый продукт в нашем магазине — это часть этого пути: от семечка до баночки.
+            Мы благодарны, что вы выбираете нас.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Контакты -->
+    <section class="tab-panel" id="contacts" role="tabpanel">
+      <h2 class="section-title">Контакты</h2>
+      <p class="section-lead">Будем рады вашим вопросам и заказам.</p>
+
+      <div class="contacts-grid">
+        <div class="contact-card">
+          <h3>Связаться с нами</h3>
+          <div class="contact-line"><span class="icon">📍</span><span>Республика Крым, с. Тургеневка, ул. Лавандовая, 12</span></div>
+          <div class="contact-line"><span class="icon">📞</span><a href="tel:+78001234567">+7 (800) 123-45-67</a></div>
+          <div class="contact-line"><span class="icon">✉️</span><a href="mailto:hello@lavanda-shop.ru">hello@lavanda-shop.ru</a></div>
+          <div class="contact-line"><span class="icon">🕘</span><span>Ежедневно с 9:00 до 19:00</span></div>
+        </div>
+
+        <div class="contact-card">
+          <h3>Социальные сети</h3>
+          <div class="contact-line"><span class="icon">📷</span><span>Instagram: @lavanda_shop</span></div>
+          <div class="contact-line"><span class="icon">📨</span><span>Telegram: @lavanda_shop</span></div>
+          <div class="contact-line"><span class="icon">🌐</span><span>VK: vk.com/lavanda_shop</span></div>
+        </div>
+      </div>
+
+      <div class="widget-wrap">
+        <h3>Запишитесь на дегустацию или экскурсию по ферме</h3>
+        <p>Используйте форму ниже, чтобы выбрать удобную дату и время.</p>
+        <div id="dive-widget"></div>
+        <script src="https://widget.stage.divetim.ru/dive-widget.iife.js?apiKey=5f6e50ee50db47456091e3c90817eb4e1e7f6b00" async></script>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Лаванда — магазин натуральной косметики и ароматов. Все права защищены.
+  </footer>
+
+  <script>
+    (function () {
+      const tabs = document.querySelector('.tabs');
+      const buttons = tabs.querySelectorAll('.tab-btn');
+      const panels = document.querySelectorAll('.tab-panel');
+
+      function activate(name) {
+        buttons.forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+        panels.forEach(p => p.classList.toggle('active', p.id === name));
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      tabs.addEventListener('click', e => {
+        const btn = e.target.closest('.tab-btn');
+        if (!btn) return;
+        activate(btn.dataset.tab);
+      });
+
+      // CTA на главной — переход в каталог
+      document.addEventListener('click', e => {
+        const link = e.target.closest('[data-go]');
+        if (!link) return;
+        activate(link.dataset.go);
+      });
+    })();
+  </script>
+</body>
+</html>
